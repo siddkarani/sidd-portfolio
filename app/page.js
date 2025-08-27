@@ -5,7 +5,7 @@ import { Send, Moon, Sun, Sparkles, ArrowDown } from 'lucide-react';
 
 export default function PortfolioWebsite() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hey! I'm Sidd's AI assistant. Ask me anything about him - his background, projects, research, skills, or what drives his passion for ethical AI. What would you like to know?" }
+    { role: 'assistant', content: "Hey! I am Sidd\'s AI assistant. Ask me anything about him - his background, projects, research, skills, or what drives his passion for ethical AI. What would you like to know?" }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -65,7 +65,7 @@ export default function PortfolioWebsite() {
   };
 
   const suggestedQuestions = [
-    "What's Sidd's background story?",
+    "What\'s Sidd\'s background story?",
     "Tell me about his AI research",
     "What projects has he built?",
     "What are his career goals?"
@@ -91,10 +91,10 @@ export default function PortfolioWebsite() {
         {/* Welcome Section */}
         <div className="px-4 py-8 text-center border-b border-gray-800">
           <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Welcome to Sidd's AI Assistant
+            Welcome to Sidd\'s AI Assistant
           </h2>
           <p className="text-gray-400">
-            CS & Math student at Northeastern • AI Researcher • Building ethical AI for humanity
+            CS &amp; Math student at Northeastern • AI Researcher • Building ethical AI for humanity
           </p>
         </div>
 
@@ -165,7 +165,7 @@ export default function PortfolioWebsite() {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
-                placeholder="Ask me about Sidd's journey, projects, research, or aspirations..."
+                placeholder="Ask me about Sidd\'s journey, projects, research, or aspirations..."
                 className="flex-1 px-4 py-3 bg-gray-800 text-white placeholder-gray-400 rounded-xl border border-gray-700 focus:border-cyan-500 focus:outline-none transition-colors"
               />
               <button
@@ -177,7 +177,7 @@ export default function PortfolioWebsite() {
               </button>
             </div>
             <p className="text-xs text-gray-500 mt-2 text-center">
-              Powered by Gemini AI • Ask anything about Sidd's experience, skills, or goals
+              Powered by Gemini AI • Ask anything about Sidd\'s experience, skills, or goals
             </p>
           </div>
         </div>
