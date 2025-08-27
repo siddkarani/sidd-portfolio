@@ -5,7 +5,7 @@ import { Send, Moon, Sun, Sparkles, ArrowDown } from 'lucide-react';
 
 export default function PortfolioWebsite() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hey! I am Sidd&apos;s AI assistant. Ask me anything about him - his background, projects, research, skills, or what drives his passion for ethical AI. What would you like to know?" }
+    { role: 'assistant', content: "Hey! I am Sidd's AI assistant. Ask me anything about him - his background, projects, research, skills, or what drives his passion for ethical AI. What would you like to know?" }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -65,7 +65,7 @@ export default function PortfolioWebsite() {
   };
 
   const suggestedQuestions = [
-    "What&apos;s Sidd&apos;s background story?",
+    "What's Sidd's background story?",
     "Tell me about his AI research",
     "What projects has he built?",
     "What are his career goals?"
