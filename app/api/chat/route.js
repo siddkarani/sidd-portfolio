@@ -22,7 +22,7 @@ export async function POST(req) {
   try {
     const { messages } = await req.json();
     
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-002" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     
     // Format conversation history
     const conversation = messages.map(msg => 
