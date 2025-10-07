@@ -1,48 +1,37 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
+import { SIDD_COMPLETE_PROFILE } from "@/lib/knowledge-base";
 
 export async function POST(req) {
   try {
-    const { message, conversationHistory } = await req.json();
+    const { messages } = await req.json();
+    
+    // Get the last user message
+    const lastMessage = messages[messages.length - 1].content;
 
-    // Initialize the Gemini API
+    // Initialize Gemini
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-    // Use gemini-2.5-flash - the current stable model
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-    // Format conversation history
-    const history = conversationHistory?.map((msg) => ({
-      role: msg.role === "user" ? "user" : "model",
-      parts: [{ text: msg.content }],
-    })) || [];
+    // Create context with knowledge base
+    const systemPrompt = `You are Sidd Karani's AI assistant. Answer questions about Sidd based on this information: ${JSON.stringify(SIDD_COMPLETE_PROFILE)}. Be conversational, enthusiastic, and personal. Keep responses concise but informative.`;
 
-    // Start chat with history
-    const chat = model.startChat({
-      history: history,
-      generationConfig: {
-        maxOutputTokens: 1000,
-        temperature: 0.7,
-      },
-    });
+    const prompt = `${systemPrompt}\n\nUser question: ${lastMessage}`;
 
-    // Send message and get response
-    const result = await chat.sendMessage(message);
+    // Generate response
+    const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
 
     return NextResponse.json({ 
-      response: text,
-      success: true 
+      content: text
     });
 
   } catch (error) {
     console.error("Error in chat route:", error);
     return NextResponse.json(
       { 
-        error: "Failed to generate response",
-        details: error.message,
-        success: false
+        content: "Sorry, I had trouble processing that. Please try again!"
       },
       { status: 500 }
     );
